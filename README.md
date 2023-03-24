@@ -1,6 +1,4 @@
-# hw2_2581
-#ข้อ1 สำหรับการสร้าง Bucket
-
+#ข้อ 1 สำหรับการสร้าง Bucket 
 import boto3
 import botocore
 
@@ -16,10 +14,17 @@ def create_bucket(bucket):
         logging.error(e)
         return 'Bucket ' + bucket + ' cloud not be created.'
     return 'Crated or already exists ' + bucket + ' bucket.'
-create_bucket('nyctlc-cs653-2581')
+create_bucket('nyctlc-cs653-2581') 
+
+#ข้อ 2 สำหรับการดึงข้อมูลจาก datasource ไปเก็บไว้ที่ S3 bucket ด้านบนที่สร้างขึ้นมา
+
+import boto3
+import botocore
+
+s3 = boto3.client('s3')
+s3_resource = boto3.resource('s3')
 
 
-#ข้อ 2 สำหรับการดึงข้อมูลไปเก็บไว้ที่ S3
 
 def copy_among_buckets(from_bucket, from_key, to_bucket, to_key):
     s3_resource.meta.client.copy({'Bucket': from_bucket, 'Key': from_key},
@@ -35,5 +40,4 @@ copy_among_buckets(from_bucket='nyc-tlc', from_key='trip data/yellow_tripdata_20
 copy_among_buckets(from_bucket='nyc-tlc', from_key='trip data/yellow_tripdata_2017-03.parquet',
                       to_bucket='nyctlc-cs653-2581', to_key='trip data/yellow_tripdata_2017-03.parquet')
 
-
-                                                                                                                            6,0-1         Top
+                                                                   
